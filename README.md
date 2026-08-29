@@ -119,3 +119,27 @@ MIT — Mourad.Soltani
 
 **Mourad.Soltani** · OpenSkillVault · 2026  
 *Built as a complete, health-checked, production-ready trending project.*
+
+## Deploy on Vercel (Python)
+
+Configured for Vercel serverless Python + static frontend.
+
+Files:
+- `vercel.json` — builds `@vercel/python` for `api/index.py` and static `frontend/**`
+- `api/index.py` — WSGI entry importing Flask `app`
+- Skills storage uses `/tmp` when `VERCEL=1` (serverless filesystem)
+
+```bash
+# After linking the GitHub repo in Vercel dashboard:
+# Framework: Other
+# Install Command: pip install -r requirements.txt
+# (or leave default; Vercel detects requirements.txt)
+```
+
+Routes:
+- `/styles.css`, `/app.js` → static frontend
+- everything else → Flask via `api/index.py`
+
+**Note:** Skill data on Vercel lives in `/tmp` and is **not durable** across cold starts. For production persistence, use a database or object storage.
+
+Signature: Mourad.Soltani

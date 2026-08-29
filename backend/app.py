@@ -26,12 +26,19 @@ app = Flask(__name__,
 CORS(app)
 
 # Data paths - Mourad.Soltani
+# On Vercel, OPENSKILLVAULT_SKILLS_DIR points to /tmp (read-only FS elsewhere)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKILLS_DIR = os.path.join(BASE_DIR, "skills")
+SKILLS_DIR = os.environ.get(
+    "OPENSKILLVAULT_SKILLS_DIR",
+    os.path.join(BASE_DIR, "skills"),
+)
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
 os.makedirs(SKILLS_DIR, exist_ok=True)
-os.makedirs(DATA_DIR, exist_ok=True)
+try:
+    os.makedirs(DATA_DIR, exist_ok=True)
+except OSError:
+    pass  # read-only on serverless
 
 manager = SkillsManager(SKILLS_DIR)
 
