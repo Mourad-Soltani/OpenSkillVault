@@ -3,7 +3,7 @@
 **AI Agent Skills Manager** — Trending 2026 project inspired by the explosion of agent skills packs on GitHub (skills, taste-skill, book-to-skill, ECC, etc.).
 
 > **Author & Signature:** Mourad.Soltani  
-> Version: 1.0.0  
+> Version: 1.1.0  
 > Built: August 2026
 
 ---
@@ -143,3 +143,41 @@ Routes:
 **Note:** Skill data on Vercel lives in `/tmp` and is **not durable** across cold starts. For production persistence, use a database or object storage.
 
 Signature: Mourad.Soltani
+
+## Architecture (v1.1)
+
+```
+OpenSkillVault/
+├── api/index.py          # Vercel Python WSGI entry
+├── backend/
+│   ├── app.py            # Flask routes
+│   ├── config.py         # Central config & limits
+│   └── skills_manager.py # CRUD, import/export, validation
+├── frontend/             # Dark vanilla UI
+├── skills/               # Bundled seed skills (Markdown+YAML)
+├── tests/                # pytest suite
+├── vercel.json
+└── SALES.md              # Commercial one-pager
+```
+
+- **Storage:** Markdown files with YAML frontmatter (agent-native format)
+- **Security:** skill-id allowlist (no path traversal), payload size limits
+- **Serverless:** skills dir → `/tmp` when `VERCEL=1`; seeds copied from bundled `skills/`
+- **API:** CRUD, categories, search, export, **import**, health, stats
+
+## API (v1.1)
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/health` | Health check |
+| GET | `/api/skills` | List (`?category=&q=`) |
+| GET | `/api/skills/:id` | Get one |
+| POST | `/api/skills` | Create |
+| PUT | `/api/skills/:id` | Update |
+| DELETE | `/api/skills/:id` | Delete |
+| GET | `/api/categories` | Categories |
+| GET | `/api/export` | Export pack JSON |
+| POST | `/api/import` | Import pack (`overwrite` optional) |
+| GET | `/api/stats` | Stats |
+
+Signature: **Mourad.Soltani**
