@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenSkillVault — Mourad.Soltani</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <!-- Mourad.Soltani signature -->
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🦞</span>
+        <div>
+          <h1>OpenSkillVault</h1>
+          <p class="tagline">AI Agent Skills Manager · by <strong>Mourad.Soltani</strong></p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-new" class="btn primary">+ New Skill</button>
+        <button id="btn-export" class="btn">Export Pack</button>
+        <button id="btn-health" class="btn ghost">Health</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <aside class="sidebar">
+        <div class="search-box">
+          <input type="search" id="search" placeholder="Search skills..." />
+        </div>
+        <div class="filters">
+          <h3>Categories</h3>
+          <ul id="category-list">
+            <li class="active" data-cat="">All</li>
+          </ul>
+        </div>
+        <div class="stats" id="stats">
+          <p>Loading…</p>
+        </div>
+        <footer class="sidebar-footer">
+          <p>Signature: <strong>Mourad.Soltani</strong></p>
+          <p class="version">v1.0.0 · 2026 Trending</p>
+        </footer>
+      </aside>
+
+      <section class="content">
+        <div id="skill-list" class="skill-grid"></div>
+        <div id="empty-state" class="empty hidden">
+          <p>No skills yet. Create your first one.</p>
+          <p class="sig">Mourad.Soltani</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modal-title">New Skill</h2>
+          <button id="modal-close" class="btn ghost">×</button>
+        </div>
+        <form id="skill-form">
+          <input type="hidden" id="skill-id" />
+          <label>Name (slug)
+            <input type="text" id="skill-name" required placeholder="e.g. code-reviewer" />
+          </label>
+          <label>Title
+            <input type="text" id="skill-title" required placeholder="Human readable title" />
+          </label>
+          <label>Category
+            <input type="text" id="skill-category" placeholder="engineering / creative / research" />
+          </label>
+          <label>Description
+            <textarea id="skill-description" rows="2"></textarea>
+          </label>
+          <label>Content (Markdown)
+            <textarea id="skill-content" rows="12" placeholder="# Skill instructions..."></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="button" id="btn-cancel" class="btn">Cancel</button>
+            <button type="submit" class="btn primary">Save Skill</button>
+          </div>
+        </form>
+        <p class="modal-sig">Crafted by Mourad.Soltani</p>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+  </div>
+  <script src="/app.js"></script>
+  <!-- Mourad.Soltani · OpenSkillVault · 2026 -->
+</body>
+</html>

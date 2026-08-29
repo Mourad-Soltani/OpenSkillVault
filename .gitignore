@@ -1,0 +1,14 @@
+# Mourad.Soltani - OpenSkillVault
+__pycache__/
+*.py[cod]
+.env
+.venv/
+venv/
+*.egg-info/
+.coverage
+htmlcov/
+.pytest_cache/
+.DS_Store
+node_modules/
+dist/
+*.log

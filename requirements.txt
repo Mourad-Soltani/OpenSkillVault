@@ -1,0 +1,10 @@
+# OpenSkillVault - Mourad.Soltani
+# AI Agent Skills Manager - Trending 2026 project
+flask==3.0.3
+flask-cors==4.0.1
+pyyaml==6.0.2
+markdown==3.6
+pytest==8.3.2
+pytest-cov==5.0.0
+gunicorn==22.0.0
+python-dotenv==1.0.1
